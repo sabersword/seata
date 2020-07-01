@@ -1,6 +1,9 @@
 # Script usage demo
 ![Since 1.2.0](https://img.shields.io/badge/Since%20-1.2.0-orange.svg?style=flat-square)
 
+./nacos-config.sh -g SEATA_SERVER_GROUP  -t 1e3ac3f6-1f3f-46a1-bb59-ccedcf5255f7 -f config-server.txt
+./nacos-config.sh -g SEATA_CLIENT_GROUP  -t fb32d0de-1547-418b-8097-698bdc478487 -f config-client.txt
+
 ## important attributes 
 
 you only need to follow the instructions below and keep the corresponding configuration in 'config.txt' to run. For more configuration information, please visit [seata.io](https://seata.io/)

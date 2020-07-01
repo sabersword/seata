@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-while getopts ":h:p:g:t:" opt
+while getopts ":h:p:g:t:f:" opt
 do
   case $opt in
   h)
@@ -28,8 +28,11 @@ do
   t)
     tenant=$OPTARG
     ;;
+  f)
+    file=$OPTARG
+    ;;
   ?)
-    echo " USAGE OPTION: $0 [-h host] [-p port] [-g group] [-t tenant] "
+    echo " USAGE OPTION: $0 [-h host] [-p port] [-g group] [-t tenant] [-f file]"
     exit 1
     ;;
   esac
@@ -46,6 +49,9 @@ if [[ -z ${group} ]]; then
 fi
 if [[ -z ${tenant} ]]; then
     tenant=""
+fi
+if [[ -z ${file} ]]; then
+    file="config.txt"
 fi
 
 nacosAddr=$host:$port
@@ -71,7 +77,7 @@ function addConfig() {
 }
 
 count=0
-for line in $(cat $(dirname "$PWD")/config.txt | sed s/[[:space:]]//g); do
+for line in $(cat $(dirname "$PWD")/$file | sed s/[[:space:]]//g); do
   (( count++ ))
 	key=${line%%=*}
   value=${line#*=}
